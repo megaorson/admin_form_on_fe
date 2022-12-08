@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">custom_form.custom_form_data_source</item>
+            <item name="ajaxSave" xsi:type="boolean">true</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Customer Information</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+    </argument>
+    <settings>
+        <layout>
+            <type>tabs</type>
+        </layout>
+        <deps>
+            <dep>custom_form.custom_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="custom_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="Megaorson_custom_form/index/createpost"/>
+        </settings>
+        <dataProvider class="Megaorson\CustomForm\DataProvider\CustomForm" name="custom_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="request_data">
+        <settings>
+            <label translate="true">Form Title</label>
+        </settings>
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">request_data</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Name</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+        <field name="phone" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">request_data</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Phone</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+        <field name="is_random_check" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">request_data</item>
+                    <item name="description" xsi:type="string">Random Check</item>
+                    <item name="value" xsi:type="string">1</item>
+                    <item name="checked" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+        <field name="email" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">request_data</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Email</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-email" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+        <field name="address" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">request_data</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Address</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+        <field name="code" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Megaorson\CustomForm\Model\ResourceModel\CountryList\Collection</item>
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">request_data</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Country</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+        <field name="button_save" formElement="button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">request_data</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">custom_form.areas</item>
+                            <item name="actionName" xsi:type="string">save</item>
+                            <item name="params" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="redirect" xsi:type="boolean">false</item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="title" xsi:type="string">Save</item>
+                </item>
+            </argument>
+        </field>
+        <field name="button_reset" formElement="button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">request_data</item>
+                    <item name="title" xsi:type="string">Clear</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">custom_form.areas</item>
+                            <item name="actionName" xsi:type="string">reset</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

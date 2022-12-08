@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add
+            id="Megaorson_CustomForm::base"
+            title="Megaorson Custom Form"
+            module="Megaorson_CustomForm"
+            sortOrder="12"
+            resource="Megaorson_CustomForm::base"/>
+
+        <add
+            id="Megaorson_CustomForm::import"
+            title="Import Countries"
+            module="Megaorson_CustomForm"
+            sortOrder="10"
+            parent="Megaorson_CustomForm::base"
+            action="megaorson_custom_form/index/import"
+            resource="Megaorson_CustomForm::import"/>
+
+        <add
+            id="Megaorson_CustomForm::grid"
+            title="Form Data Requests"
+            module="Megaorson_CustomForm"
+            sortOrder="20"
+            parent="Megaorson_CustomForm::base"
+            action="megaorson_custom_form/index/index"
+            resource="Megaorson_CustomForm::grid"/>
+
+    </menu>
+</config>

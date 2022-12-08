@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="Megaorson_country_list" resource="default" engine="innodb"
+           comment="Megaorson Country list Table">
+        <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="code" nullable="false" length="2" comment="Code"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="Megaorson_COUNTRY_LIST_CODE" indexType="btree">
+            <column name="code"/>
+        </index>
+    </table>
+    <table name="Megaorson_request_data" resource="default" engine="innodb"
+           comment="Megaorson Country list Table">
+        <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="code" nullable="false" length="2" comment="Code"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="phone" nullable="false" length="255" comment="Phone"/>
+        <column xsi:type="smallint" name="is_random_check" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Is Random check"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Email"/>
+        <column xsi:type="varchar" name="address" nullable="false" length="255" comment="Address"/>
+        <constraint xsi:type="foreign" referenceId="Megaorson_REQUEST_DATA_CODE_Megaorson_COUNTRY_LIST_CODE" table="Megaorson_request_data" column="code" referenceTable="Megaorson_country_list" referenceColumn="code" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>

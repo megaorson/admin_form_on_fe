@@ -1,0 +1,65 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="Megaorson_custom_form_listing_data_source_listing_data_source" xsi:type="string">Megaorson\CustomForm\Model\ResourceModel\RequestData\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Megaorson\CustomForm\Model\ResourceModel\RequestData\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">Megaorson_request_data</argument>
+            <argument name="resourceModel" xsi:type="string">Megaorson\CustomForm\Model\ResourceModel\RequestData</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Megaorson\CustomForm\Logger\RequestHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/Megaorson_form_request.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Megaorson\CustomForm\Logger\RequestLogger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">RequestLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Megaorson\CustomForm\Logger\RequestHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Megaorson\CustomForm\Logger\ResponseHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/Megaorson_form_response.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Megaorson\CustomForm\Logger\ResponseLogger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">ResponseLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Megaorson\CustomForm\Logger\ResponseHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Megaorson\CustomForm\Logger\ErrorHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/Megaorson_form_error.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Megaorson\CustomForm\Logger\ErrorLogger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">RequestLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Megaorson\CustomForm\Logger\ErrorHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Megaorson\CustomForm\Helper\Data">
+        <arguments>
+            <argument name="requestLogger" xsi:type="object">Megaorson\CustomForm\Logger\RequestLogger</argument>
+            <argument name="responseLogger" xsi:type="object">Megaorson\CustomForm\Logger\ResponseLogger</argument>
+            <argument name="errorLogger" xsi:type="object">Megaorson\CustomForm\Logger\ErrorLogger</argument>
+        </arguments>
+    </type>
+</config>

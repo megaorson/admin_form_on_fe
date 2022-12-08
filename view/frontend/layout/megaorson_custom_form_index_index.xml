@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Megaorson\CustomForm\Block\CustomForm" name="Megaorson.form.settings" template="Megaorson_CustomForm::form_data.phtml" />
+            <uiComponent name="custom_form"/>
+        </referenceContainer>
+    </body>
+</page>
